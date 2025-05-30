@@ -1,0 +1,71 @@
+! device: spine1 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
+hostname spine1
+!
+spanning-tree mode mstp
+!
+interface Ethernet1
+   description to_leaf1
+   no switchport
+   ip address 10.4.1.0/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 10 md5 7 hAe6SH1o6hn0bMv6P9aNQA==
+!
+interface Ethernet2
+   description to_leaf2
+   no switchport
+   ip address 10.4.1.2/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 11 md5 7 Mx7nQMePMn2DIc2k8S0Oxw==
+!
+interface Ethernet3
+   description to_leaf3
+   no switchport
+   ip address 10.4.1.4/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 12 md5 7 pdBnEkh9EsJnjF4fR3cXLA==
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
+!
+interface Loopback1
+   ip address 10.1.1.0/32
+   ip ospf area 0.0.0.0
+!
+interface Management1
+!
+ip routing
+!
+router ospf 1
+   router-id 10.1.1.0
+   bfd default
+   max-lsa 10000
+!
+end
