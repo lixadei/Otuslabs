@@ -1,0 +1,46 @@
+! device: Ar2 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname leaf3
+!
+spanning-tree mode mstp
+!
+interface Ethernet1
+   description to_spine1
+   no switchport
+   ip address 10.4.1.5/31
+!
+interface Ethernet2
+   description to_spine2
+   no switchport
+   ip address 10.4.2.5/31
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+   description to_pc3
+!
+interface Ethernet8
+   description to_pc4
+!
+interface Loopback2
+   ip address 10.2.3.0/32
+!
+interface Management1
+!
+ip routing
+!
+end
