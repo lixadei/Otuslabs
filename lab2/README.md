@@ -1,4 +1,4 @@
-# Лабораторная работа №1: Underlay Network на OSPF
+# Лабораторная работа №2: Underlay Network на OSPF
 
 ## Цели работы
 - Настроить Underlay-сеть с использованием протокола OSPF
