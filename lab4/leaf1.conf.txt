@@ -1,0 +1,68 @@
+! device: leaf1 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname leaf1
+!
+spanning-tree mode mstp
+!
+interface Ethernet1
+   description to_spine1
+   no switchport
+   ip address 10.4.1.1/31
+   bfd interval 100 min-rx 100 multiplier 3
+   no ip ospf neighbor bfd
+   isis enable 1
+   isis bfd
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 Vp4o7EAbwBeDpGl0zAllVA==
+!
+interface Ethernet2
+   description to_spine2
+   no switchport
+   ip address 10.4.2.1/31
+   bfd interval 100 min-rx 100 multiplier 3
+   no ip ospf neighbor bfd
+   isis enable 1
+   isis bfd
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 Vp4o7EAbwBeDpGl0zAllVA==
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+   description to_pc1
+!
+interface Ethernet8
+!
+interface Loopback2
+   ip address 10.2.1.0/32
+   isis enable 1
+!
+interface Management1
+!
+ip routing
+!
+router isis 1
+   net 49.0010.0002.0001.0000.00
+   authentication mode md5
+   authentication key 7 Vp4o7EAbwBeDpGl0zAllVA==
+   !
+   address-family ipv4 unicast
+      bfd all-interfaces
+!
+end
