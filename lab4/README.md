@@ -1,4 +1,4 @@
-# Лабораторная работа №1: Underlay Network на eBGP
+# Лабораторная работа №4: Underlay Network на eBGP
 
 ## Цели работы
 - Настроить протокол eBGP для Underlay сети
