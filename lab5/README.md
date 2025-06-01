@@ -41,7 +41,7 @@
 **Таблица MAC-адресов (Leaf1):**  
 ![VXLAN address-table](https://github.com/user-attachments/assets/b3e64743-7371-46ac-915d-e01be3504bde)  
   - MAC клиента PC2: 0050.7966.6807 → VTEP 10.200.2.0 
-  - MAC клиента PC3: 0050.7966.6808 → VTEP 10.200.2.0   
+  - MAC клиента PC3: 0050.7966.6808 → VTEP 10.200.3.0   
   - MAC клиента PC4: 0050.7966.6809 → VTEP 10.200.3.0  
 
 **Список VTEP (Leaf1):**  
