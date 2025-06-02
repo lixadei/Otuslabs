@@ -129,7 +129,7 @@
 
 ![Отключен линк eth7](https://github.com/user-attachments/assets/86228a2c-c243-4c7c-afd2-41a46a106acd)
 
-**Результаты с PC3:**
+**Результаты с PC4:**
 
 ![Ping результаты с pc4](https://github.com/user-attachments/assets/656d1051-c453-4674-86db-0ed8f3885e57)
 
