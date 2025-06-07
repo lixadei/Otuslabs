@@ -1,0 +1,66 @@
+! device: bb (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
+hostname bb
+!
+spanning-tree mode mstp
+!
+vlan 100,777
+!
+interface Ethernet1
+   description to_leaf1
+   switchport trunk allowed vlan 100,777
+   switchport mode trunk
+!
+interface Ethernet2
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
+!
+interface Loopback1
+   ip address 8.8.8.8/32
+!
+interface Management1
+!
+interface Vlan100
+   description to_leaf1
+   ip address 11.11.11.11/24
+!
+interface Vlan777
+   description to_leaf1
+   ip address 77.77.77.77/24
+!
+ip routing
+!
+ip route 0.0.0.0/0 Null0
+!
+router bgp 65100
+   router-id 8.8.8.8
+   neighbor route peer group
+   neighbor route remote-as 65001
+   neighbor 11.11.11.200 peer group route
+   neighbor 77.77.77.100 peer group route
+   redistribute connected
+   redistribute static
+   !
+   address-family ipv4
+      neighbor 11.11.11.200 activate
+      neighbor 77.77.77.100 activate
+!
+end
