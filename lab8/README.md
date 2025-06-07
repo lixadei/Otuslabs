@@ -24,26 +24,26 @@
 #### 3.1. Проверка на Leaf1 (AS 65001)
 
 ##### Проверка таблицы маршрутизации VRF
-![leaf1#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/391bea74-062c-44cb-a556-4283d2d54718)
+![leaf1#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/c092e898-ea96-4c12-930e-3e5cf8908bfb)
 - Вывод таблицы маршрутизации VRF OTUS-Vxlan
 - Наличие маршрутов ко всем клиентским подсетям через VXLAN
 
 #### 3.2. Проверка на Leaf2 (AS 65002)
 
 ##### Проверка таблицы маршрутизации VRF
-![leaf2#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/044ac5c9-8894-4d33-b7ee-5bff1961b314)
+![leaf2#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/286f6f19-3080-4a37-bd57-e7402eb12c52)
 - Вывод таблицы маршрутизации VRF OTUS-Vxlan
 - Наличие маршрутов ко всем клиентским подсетям через VXLAN
 
 #### 3.3. Проверка на Leaf3 (AS 65003)
 
 ##### Проверка таблицы маршрутизации VRF
-![leaf3#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/4155d0b7-ffd8-4c9f-be8d-b9d8be929123)
+![leaf3#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/b46aeb80-0cf9-4dbb-afe3-201c5a850ddf)
 - Вывод таблицы маршрутизации VRF OTUS-Vxlan
 - Наличие маршрутов ко всем клиентским подсетям через VXLAN
 
 ##### Проверка EVPN Type 5 (IP Prefix) маршрутов
-![leaf1#show bgp evpn route-type  ip-prefix ipv4](https://github.com/user-attachments/assets/dfc73329-056e-49ac-9a5b-08732cdedf29)
+![leaf1#show bgp evpn route-type  ip-prefix ipv4](https://github.com/user-attachments/assets/01b41d70-ed6e-4eff-950a-92e51c2bf98b)
 - Подтверждение анонсирования префиксов через EVPN route-type 5
 
 ##### Проверка состояния VXLAN интерфейса
