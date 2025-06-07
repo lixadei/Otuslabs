@@ -24,30 +24,30 @@
 #### 3.1. Проверка на Leaf1 (AS 65001)
 
 ##### Проверка таблицы маршрутизации VRF
-![leaf1#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/5d2b8204-73ab-4dbd-a229-45fe21f9a695)
+![leaf1#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/391bea74-062c-44cb-a556-4283d2d54718)
 - Вывод таблицы маршрутизации VRF OTUS-Vxlan
 - Наличие маршрутов ко всем клиентским подсетям через VXLAN
 
 #### 3.2. Проверка на Leaf2 (AS 65002)
 
 ##### Проверка таблицы маршрутизации VRF
-![leaf2#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/27aa9aae-b0cc-43d0-a32c-4859dd5b7e70)
+![leaf2#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/044ac5c9-8894-4d33-b7ee-5bff1961b314)
 - Вывод таблицы маршрутизации VRF OTUS-Vxlan
 - Наличие маршрутов ко всем клиентским подсетям через VXLAN
 
 #### 3.3. Проверка на Leaf3 (AS 65003)
 
 ##### Проверка таблицы маршрутизации VRF
-![leaf3#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/fbc33b20-b046-4603-a1f9-7e42932bea1d)
+![leaf3#show ip route vrf OTUS-Vxlan](https://github.com/user-attachments/assets/4155d0b7-ffd8-4c9f-be8d-b9d8be929123)
 - Вывод таблицы маршрутизации VRF OTUS-Vxlan
 - Наличие маршрутов ко всем клиентским подсетям через VXLAN
 
 ##### Проверка EVPN Type 5 (IP Prefix) маршрутов
-![leaf1#show bgp evpn route-type  ip-prefix ipv4](https://github.com/user-attachments/assets/f6325fc8-3887-4dd4-8f62-be378141ac95)
+![leaf1#show bgp evpn route-type  ip-prefix ipv4](https://github.com/user-attachments/assets/dfc73329-056e-49ac-9a5b-08732cdedf29)
 - Подтверждение анонсирования префиксов через EVPN route-type 5
 
 ##### Проверка состояния VXLAN интерфейса
-![leaf1#show interfaces vxlan 1](https://github.com/user-attachments/assets/538b0bd1-9a23-4305-b95c-8958ee1d6a80)
+![leaf1#show interfaces vxlan 1](https://github.com/user-attachments/assets/b0879cc0-51f1-4d32-b245-136a0ce85857)
 - Состояние VXLAN интерфейса
 - Проверка корректной работы VXLAN туннеля
 
@@ -62,24 +62,28 @@
 
 ##### Ping-тесты с PC1
 
-![Ping результаты с pc1](https://github.com/user-attachments/assets/d2fa438b-132c-4258-bd12-4aa45b177b4d)
+![Ping результаты с pc1](https://github.com/user-attachments/assets/5240933b-60f2-44fd-9008-b31add356d4e)
 
 | Источник | Назначение | Результат  |
 |----------|------------|------------|
 | PC1      | PC2        | Успешно    |
 | PC1      | PC3        | Успешно    |
 | PC1      | PC4        | Успешно    |
+| PC1      | PC5        | Успешно    |
+| PC1      | PC6        | Успешно    |
 | PC1      | bb lo1     | Успешно    |
 
 ##### Ping-тесты с PC4
 
-![Ping результаты с pc4](https://github.com/user-attachments/assets/f09e8506-2315-428a-9230-225b4c67893d)
+![Ping результаты с pc4](https://github.com/user-attachments/assets/20ec07b9-caa5-4911-a5f5-f5937a87e4d8)
 
 | Источник | Назначение | Результат  |
 |----------|------------|------------|
+| PC4      | bb lo1     | Успешно    |
 | PC4      | PC2        | Успешно    | 
 | PC4      | PC3        | Успешно    |
-| PC4      | bb lo1     | Успешно    |
+| PC4      | PC5        | Успешно    |
+| PC4      | PC6        | Успешно    |
 
 **Вывод:**  
 - Успешно реализована передача суммарных префиксов через EVPN route-type 5 между всеми Leaf-устройствами
