@@ -1,0 +1,166 @@
+! device: leaf1 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname leaf1
+!
+spanning-tree mode mstp
+no spanning-tree vlan-id 100
+!
+vlan 10-11,100,777
+!
+vrf instance OTUS-Vxlan
+!
+vrf instance OTUS2VRF
+!
+interface Ethernet1
+   description to_spine1
+   no switchport
+   ip address 10.4.1.1/31
+   bfd interval 500 min-rx 500 multiplier 3
+   no ip ospf neighbor bfd
+   no isis bfd
+!
+interface Ethernet2
+   description to_spine2
+   no switchport
+   ip address 10.4.2.1/31
+   bfd interval 500 min-rx 500 multiplier 3
+   no ip ospf neighbor bfd
+   no isis bfd
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+   description to_bb
+   switchport trunk allowed vlan 100,777
+   switchport mode trunk
+!
+interface Ethernet6
+!
+interface Ethernet7
+   description to_pc1
+   switchport access vlan 10
+!
+interface Ethernet8
+   description to_pc2
+   switchport access vlan 11
+!
+interface Loopback2
+   ip address 10.2.1.0/32
+!
+interface Loopback100
+   description VXLAN Loopback
+   ip address 10.200.1.0/32
+!
+interface Management1
+!
+interface Vlan10
+   vrf OTUS-Vxlan
+   ip address virtual 172.16.10.252/24
+!
+interface Vlan11
+   vrf OTUS-Vxlan
+   ip address virtual 172.16.11.252/24
+!
+interface Vlan100
+   description to_bb
+   vrf OTUS-Vxlan
+   ip address 11.11.11.200/24
+!
+interface Vlan777
+   description to_bb
+   vrf OTUS2VRF
+   ip address 77.77.77.100/24
+!
+interface Vxlan1
+   vxlan source-interface Loopback100
+   vxlan udp-port 4789
+   vxlan vlan 10 vni 10010
+   vxlan vlan 11 vni 10011
+   vxlan vlan 777 vni 100777
+   vxlan vrf OTUS-Vxlan vni 112
+   vxlan vrf OTUS2VRF vni 777
+   vxlan virtual-vtep local-interface Loopback100
+!
+ip virtual-router mac-address 00:00:00:00:00:01
+!
+ip routing
+ip routing vrf OTUS-Vxlan
+ip routing vrf OTUS2VRF
+!
+ip prefix-list PL_LOOP
+   seq 10 permit 10.2.1.0/32
+   seq 20 permit 10.200.1.0/32
+!
+route-map RM_CONN permit 10
+   match ip address prefix-list PL_LOOP
+!
+router bgp 65001
+   router-id 10.2.1.0
+   timers bgp 3 9
+   maximum-paths 10 ecmp 10
+   neighbor EVPN peer group
+   neighbor EVPN remote-as 65000
+   neighbor EVPN update-source Loopback2
+   neighbor EVPN ebgp-multihop 3
+   neighbor EVPN send-community extended
+   neighbor SPINE peer group
+   neighbor SPINE remote-as 65000
+   neighbor SPINE bfd
+   neighbor SPINE password 7 UZZENLgj7tivE4Zci/AgEw==
+   neighbor SPINE send-community
+   neighbor SPINE maximum-routes 1000
+   neighbor 10.1.1.0 peer group EVPN
+   neighbor 10.1.2.0 peer group EVPN
+   neighbor 10.4.1.0 peer group SPINE
+   neighbor 10.4.2.0 peer group SPINE
+   redistribute connected route-map RM_CONN
+   !
+   vlan 10
+      rd 65001:10010
+      route-target both 10:10010
+      redistribute learned
+   !
+   vlan 11
+      rd 65001:10011
+      route-target both 11:10011
+      redistribute learned
+   !
+   vlan 777
+      rd 65001:100777
+      route-target both 777:100777
+      redistribute learned
+   !
+   address-family evpn
+      neighbor EVPN activate
+   !
+   vrf OTUS-Vxlan
+      rd 65001:112
+      route-target import evpn 112:112
+      route-target export evpn 112:112
+      neighbor 11.11.11.11 remote-as 65100
+      redistribute connected
+      !
+      address-family ipv4
+         neighbor 11.11.11.11 activate
+   !
+   vrf OTUS2VRF
+      rd 65001:777
+      route-target import evpn 777:777
+      route-target export evpn 777:777
+      neighbor 77.77.77.77 remote-as 65100
+      redistribute connected
+      !
+      address-family ipv4
+         neighbor 77.77.77.77 activate
+!
+end

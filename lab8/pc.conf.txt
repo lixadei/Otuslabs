@@ -1,0 +1,66 @@
+pc1> show ip
+
+NAME        : pc1[1]
+IP/MASK     : 172.16.10.1/24
+GATEWAY     : 172.16.10.252
+DNS         :
+MAC         : 00:50:79:66:68:01
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+
+
+pc2> show ip
+
+NAME        : pc2[1]
+IP/MASK     : 172.16.11.1/24
+GATEWAY     : 172.16.11.252
+DNS         :
+MAC         : 00:50:79:66:68:0c
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+
+pc3> show ip
+
+NAME        : pc3[1]
+IP/MASK     : 172.16.11.2/24
+GATEWAY     : 172.16.11.253
+DNS         :
+MAC         : 00:50:79:66:68:07
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+
+pc4> show ip
+
+NAME        : pc4[1]
+IP/MASK     : 77.77.77.150/24
+GATEWAY     : 77.77.77.50
+DNS         :
+MAC         : 00:50:79:66:68:0d
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+
+pc5> show ip
+
+NAME        : pc5[1]
+IP/MASK     : 172.16.10.3/24
+GATEWAY     : 172.16.10.254
+DNS         :
+MAC         : 00:50:79:66:68:08
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+
+pc6> show ip
+
+NAME        : pc6[1]
+IP/MASK     : 172.16.11.3/24
+GATEWAY     : 172.16.11.254
+DNS         :
+MAC         : 00:50:79:66:68:09
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
