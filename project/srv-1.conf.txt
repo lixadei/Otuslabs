@@ -1,0 +1,52 @@
+! Command: show running-config
+! device: srv-1 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
+hostname srv-1
+!
+spanning-tree mode mstp
+!
+vlan 10-11
+!
+interface Port-Channel1
+   switchport trunk allowed vlan 10-11
+   switchport mode trunk
+!
+interface Ethernet1
+   description to_leaf1
+   channel-group 1 mode active
+!
+interface Ethernet2
+   description to_leaf2
+   channel-group 1 mode active
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
+!
+interface Management1
+!
+interface Vlan10
+   ip address 172.16.10.1/24
+!
+interface Vlan11
+   ip address 172.16.11.2/24
+!
+no ip routing
+!
+end
